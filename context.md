@@ -115,15 +115,15 @@ A web app where a user can upload or record a meeting (audio/transcript), and th
 - [x] Store all extracted data back to PostgreSQL
 
 ### Frontend
-- [ ] Navigation layout (sidebar with Contacts, Meetings, Pipeline)
-- [ ] Meeting upload page (drag-and-drop audio or paste transcript)
-- [ ] Meeting detail page — show transcript with highlighted entities
-- [ ] Action items panel with status toggles (todo/done/overdue)
-- [ ] CRM field changes panel with "approve/dismiss" buttons
-- [ ] Follow-up email preview with edit + copy functionality
-- [ ] Contact list with search, filter, status badges
-- [ ] Contact detail page — meeting history timeline
-- [ ] Pipeline kanban board (Prospect → Onboarding → Active)
+- [x] Navigation layout (sidebar with Contacts, Meetings, Pipeline)
+- [x] Meeting upload page (drag-and-drop audio or paste transcript)
+- [x] Meeting detail page — show transcript with highlighted entities
+- [x] Action items panel with status toggles (todo/done/overdue)
+- [x] CRM field changes panel with "approve/dismiss" buttons
+- [x] Follow-up email preview with edit + copy functionality
+- [x] Contact list with search, filter, status badges
+- [x] Contact detail page — meeting history timeline
+- [x] Pipeline kanban board (Prospect → Onboarding → Active)
 
 ### Quality & Deployment
 - [ ] Add loading skeletons and error boundaries
