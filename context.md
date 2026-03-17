@@ -126,13 +126,13 @@ A web app where a user can upload or record a meeting (audio/transcript), and th
 - [x] Pipeline kanban board (Prospect → Onboarding → Active)
 
 ### Quality & Deployment
-- [ ] Add loading skeletons and error boundaries
+- [x] Add loading skeletons and error boundaries
 - [ ] Write at least 3-5 unit tests for the agent pipeline
-- [ ] Dockerize the full stack (docker-compose.yml)
+- [x] Dockerize the full stack (docker-compose.yml)
 - [ ] Deploy frontend to Vercel
 - [ ] Deploy backend + DB to Railway or AWS
 - [ ] Record a 2-minute demo video
-- [ ] Write README with architecture diagram, setup instructions, and demo link
+- [x] Write README with architecture diagram, setup instructions, and demo link
 
 ---
 
