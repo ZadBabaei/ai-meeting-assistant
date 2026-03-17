@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { prisma } from '../lib/prisma.js';
+import { processMeeting } from '../services/processor.js';
 
 export const meetingRoutes = Router();
 
@@ -82,14 +83,12 @@ meetingRoutes.post('/:id/process', async (req, res) => {
       return res.status(400).json({ error: 'Meeting has no transcript to process' });
     }
 
-    // Mark as processing
-    await prisma.meeting.update({
-      where: { id: req.params.id },
-      data: { status: 'PROCESSING' },
-    });
-
-    // TODO: Wire up LLM agent pipeline in Phase 2
+    // Start processing asynchronously
     res.json({ message: 'Processing started', meetingId: req.params.id });
+
+    processMeeting(req.params.id).catch((err) => {
+      console.error(`Failed to process meeting ${req.params.id}:`, err);
+    });
   } catch (error) {
     res.status(500).json({ error: 'Failed to start processing' });
   }

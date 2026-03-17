@@ -107,12 +107,12 @@ A web app where a user can upload or record a meeting (audio/transcript), and th
 
 ### Backend — Agent Pipeline
 - [ ] Whisper integration: audio file → transcript text
-- [ ] LLM prompt for action item extraction (structured JSON output)
-- [ ] LLM prompt for CRM field change detection
-- [ ] LLM prompt for follow-up email generation
-- [ ] Agent orchestration: chain the above steps with error handling
+- [x] LLM prompt for action item extraction (structured JSON output)
+- [x] LLM prompt for CRM field change detection
+- [x] LLM prompt for follow-up email generation
+- [x] Agent orchestration: chain the above steps with error handling
 - [ ] Retry logic and fallback for LLM failures
-- [ ] Store all extracted data back to PostgreSQL
+- [x] Store all extracted data back to PostgreSQL
 
 ### Frontend
 - [ ] Navigation layout (sidebar with Contacts, Meetings, Pipeline)
