@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  company   String?
+  role      String?
+  phone     String?
+  status    ContactStatus @default(PROSPECT)
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetings   MeetingContact[]
+  crmChanges CRMFieldChange[]
+}
+
+model Meeting {
+  id            String        @id @default(cuid())
+  title         String
+  date          DateTime      @default(now())
+  transcript    String?
+  audioUrl      String?
+  status        MeetingStatus @default(PENDING)
+  summary       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  contacts      MeetingContact[]
+  actionItems   ActionItem[]
+  crmChanges    CRMFieldChange[]
+  followUpEmail FollowUpEmail?
+}
+
+model MeetingContact {
+  meetingId String
+  contactId String
+  meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@id([meetingId, contactId])
+}
+
+model ActionItem {
+  id          String           @id @default(cuid())
+  meetingId   String
+  meeting     Meeting          @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  description String
+  assignee    String?
+  dueDate     DateTime?
+  status      ActionItemStatus @default(TODO)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model CRMFieldChange {
+  id         String              @id @default(cuid())
+  meetingId  String
+  meeting    Meeting             @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  contactId  String?
+  contact    Contact?            @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  fieldName  String
+  oldValue   String?
+  newValue   String
+  status     CRMChangeStatus     @default(PENDING)
+  createdAt  DateTime            @default(now())
+}
+
+model FollowUpEmail {
+  id        String   @id @default(cuid())
+  meetingId String   @unique
+  meeting   Meeting  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  subject   String
+  body      String
+  to        String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ContactStatus {
+  PROSPECT
+  ONBOARDING
+  ACTIVE
+  INACTIVE
+}
+
+enum MeetingStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum ActionItemStatus {
+  TODO
+  DONE
+  OVERDUE
+}
+
+enum CRMChangeStatus {
+  PENDING
+  APPROVED
+  DISMISSED
+}
