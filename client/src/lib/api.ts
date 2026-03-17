@@ -22,6 +22,20 @@ export const api = {
     request<{ message: string }>(`/meetings/${id}/process`, { method: 'POST' }),
   deleteMeeting: (id: string) =>
     request<{ message: string }>(`/meetings/${id}`, { method: 'DELETE' }),
+  uploadAudio: async (title: string, file: File): Promise<Meeting> => {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('audio', file);
+    const res = await fetch(`${API_BASE}/meetings/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({ error: res.statusText }));
+      throw new Error(error.error || 'Upload failed');
+    }
+    return res.json();
+  },
 
   // Contacts
   getContacts: (params?: { status?: string; search?: string }) => {

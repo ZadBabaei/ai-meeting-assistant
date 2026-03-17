@@ -106,12 +106,12 @@ A web app where a user can upload or record a meeting (audio/transcript), and th
 - [x] POST /api/meetings/:id/process — trigger LLM agent processing
 
 ### Backend — Agent Pipeline
-- [ ] Whisper integration: audio file → transcript text
+- [x] Whisper integration: audio file → transcript text
 - [x] LLM prompt for action item extraction (structured JSON output)
 - [x] LLM prompt for CRM field change detection
 - [x] LLM prompt for follow-up email generation
 - [x] Agent orchestration: chain the above steps with error handling
-- [ ] Retry logic and fallback for LLM failures
+- [x] Retry logic and fallback for LLM failures
 - [x] Store all extracted data back to PostgreSQL
 
 ### Frontend
@@ -127,7 +127,7 @@ A web app where a user can upload or record a meeting (audio/transcript), and th
 
 ### Quality & Deployment
 - [x] Add loading skeletons and error boundaries
-- [ ] Write at least 3-5 unit tests for the agent pipeline
+- [x] Write at least 3-5 unit tests for the agent pipeline
 - [x] Dockerize the full stack (docker-compose.yml)
 - [ ] Deploy frontend to Vercel
 - [ ] Deploy backend + DB to Railway or AWS

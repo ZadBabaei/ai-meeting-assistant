@@ -103,17 +103,43 @@ const EXTRACTION_FUNCTIONS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
   },
 ];
 
+async function withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      const isRetryable =
+        error?.status === 429 ||
+        error?.status === 500 ||
+        error?.status === 503 ||
+        error?.code === 'ECONNRESET' ||
+        error?.code === 'ETIMEDOUT';
+
+      if (!isRetryable || attempt === maxRetries) {
+        throw error;
+      }
+
+      const delay = Math.min(1000 * Math.pow(2, attempt), 10000);
+      console.warn(`LLM call failed (attempt ${attempt + 1}/${maxRetries + 1}), retrying in ${delay}ms...`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('Retry logic exhausted');
+}
+
 export async function processTranscript(transcript: string): Promise<AgentResult> {
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [
-      { role: 'system', content: EXTRACTION_SYSTEM_PROMPT },
-      { role: 'user', content: `Please analyze the following meeting transcript and extract all relevant data:\n\n${transcript}` },
-    ],
-    tools: EXTRACTION_FUNCTIONS,
-    tool_choice: { type: 'function', function: { name: 'save_meeting_analysis' } },
-    temperature: 0.1,
-  });
+  const response = await withRetry(() =>
+    openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: EXTRACTION_SYSTEM_PROMPT },
+        { role: 'user', content: `Please analyze the following meeting transcript and extract all relevant data:\n\n${transcript}` },
+      ],
+      tools: EXTRACTION_FUNCTIONS,
+      tool_choice: { type: 'function', function: { name: 'save_meeting_analysis' } },
+      temperature: 0.1,
+    })
+  );
 
   const toolCall = response.choices[0]?.message?.tool_calls?.[0];
   if (!toolCall || toolCall.type !== 'function' || toolCall.function.name !== 'save_meeting_analysis') {
