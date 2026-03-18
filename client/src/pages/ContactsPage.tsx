@@ -15,7 +15,7 @@ export function ContactsPage() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [showNew, setShowNew] = useState(false);
-  const [newContact, setNewContact] = useState({ name: '', email: '', company: '', role: '' });
+  const [newContact, setNewContact] = useState<{ name: string; email: string; company: string; role: string; status: 'PROSPECT' | 'ONBOARDING' | 'ACTIVE' | 'INACTIVE' }>({ name: '', email: '', company: '', role: '', status: 'PROSPECT' });
 
   const fetchContacts = () => {
     setLoading(true);
@@ -37,7 +37,7 @@ export function ContactsPage() {
     e.preventDefault();
     if (!newContact.name.trim()) return;
     await api.createContact(newContact);
-    setNewContact({ name: '', email: '', company: '', role: '' });
+    setNewContact({ name: '', email: '', company: '', role: '', status: 'PROSPECT' as const });
     setShowNew(false);
     fetchContacts();
   };
@@ -84,6 +84,16 @@ export function ContactsPage() {
               onChange={(e) => setNewContact({ ...newContact, role: e.target.value })}
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
             />
+            <select
+              value={newContact.status}
+              onChange={(e) => setNewContact({ ...newContact, status: e.target.value as 'PROSPECT' | 'ONBOARDING' | 'ACTIVE' | 'INACTIVE' })}
+              className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none"
+            >
+              <option value="PROSPECT">Prospect</option>
+              <option value="ONBOARDING">Onboarding</option>
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
           </div>
           <div className="flex gap-3 mt-4">
             <button type="submit" className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700">

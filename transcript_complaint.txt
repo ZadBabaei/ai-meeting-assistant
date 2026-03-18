@@ -1,0 +1,95 @@
+Customer Complaint Call Transcript
+Date: March 18, 2026
+Company: NovaTech Electronics
+Participants:
+- Lisa Brown (Customer)
+- Mark Davis (Customer Support Agent)
+- Supervisor: Rachel Green
+
+Mark: Thank you for calling NovaTech support, this is Mark speaking. How can I help you today?
+
+Lisa: Hi Mark, I’m honestly pretty frustrated. I bought your wireless headphones about two weeks ago, and they’ve already stopped working properly.
+
+Mark: I’m sorry to hear that, Lisa. Let’s see what we can do to fix this. Can you tell me exactly what’s happening with the headphones?
+
+Lisa: Sure. The right earbud keeps disconnecting randomly, and sometimes the sound becomes distorted. I’ve tried resetting them, reconnecting Bluetooth, everything.
+
+Mark: That definitely shouldn’t be happening. Just to confirm, which model did you purchase?
+
+Lisa: It’s the NovaTech AirSound Pro.
+
+Mark: Got it. And you said you purchased them about two weeks ago?
+
+Lisa: Yes, on March 3rd.
+
+Mark: Thank you. Do you happen to have your receipt or order number?
+
+Lisa: Yes, I have the order number. It’s NT-458921.
+
+Mark: Perfect. Let me pull that up... Okay, I see your order here. Thanks for that. Based on what you’re describing, it could be a hardware defect.
+
+Lisa: That’s what I was thinking. Honestly, I expected better quality for the price I paid.
+
+Mark: I completely understand your frustration. We definitely want to make this right. Have the headphones experienced any physical damage or exposure to water?
+
+Lisa: No, I’ve been very careful with them.
+
+Mark: Understood. In that case, we can offer you a replacement or a full refund under our warranty policy.
+
+Lisa: I’d prefer a replacement, but only if I’m not going to run into the same issue again.
+
+Mark: That’s fair. We can send you a new unit from a different batch, and we’ll also prioritize quality inspection before shipping.
+
+Lisa: Okay, that sounds better.
+
+Mark: Great. I’ll initiate the replacement process. You’ll receive a prepaid shipping label to return the defective unit.
+
+Lisa: How long will it take to get the new one?
+
+Mark: Typically 5 to 7 business days after we receive your return. However, I can request expedited shipping due to the issue.
+
+Lisa: I would really appreciate that.
+
+Mark: I’ll make a note of that. One moment please, I’ll also bring in my supervisor to ensure everything is handled properly.
+
+Rachel: Hi Lisa, this is Rachel, the support supervisor. I understand you’ve had an issue with your AirSound Pro headphones.
+
+Lisa: Yes, that’s right.
+
+Rachel: First of all, I want to apologize for the inconvenience. This is not the experience we want for our customers. I’ve reviewed your case, and we will approve an expedited replacement at no extra cost.
+
+Lisa: Thank you, I appreciate that.
+
+Rachel: We’ll also extend your warranty by an additional 3 months due to this issue.
+
+Lisa: That’s great, thank you.
+
+Mark: Lisa, you’ll receive an email shortly with the return instructions and tracking details for your replacement.
+
+Lisa: Perfect.
+
+Rachel: Is there anything else we can assist you with today?
+
+Lisa: No, that covers it. I just hope the next one works properly.
+
+Mark: We’ll make sure of that. Thank you for your patience.
+
+Lisa: Thanks.
+
+Call Summary:
+- Customer reported defective NovaTech AirSound Pro headphones
+- Issue: Right earbud disconnecting and sound distortion
+- Purchase date: March 3, 2026
+- Order number: NT-458921
+
+Resolution:
+1. Replacement approved under warranty
+2. Expedited shipping requested
+3. Prepaid return label provided
+4. Warranty extended by 3 months
+
+Action Items:
+- Send return shipping label to customer
+- Process replacement order with priority handling
+- Perform quality check on replacement unit before shipping
+- Send confirmation email with tracking details

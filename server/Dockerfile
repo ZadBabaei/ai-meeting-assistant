@@ -3,23 +3,25 @@ WORKDIR /app
 
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+COPY server/package.json ./server/
+RUN npm ci --workspace=server --omit=dev
 
 FROM base AS build
 COPY package.json package-lock.json ./
-RUN npm ci
-COPY tsconfig.json ./
-COPY prisma ./prisma
-RUN npx prisma generate
-COPY src ./src
-RUN npx tsc
+COPY server/package.json ./server/
+RUN npm ci --workspace=server
+COPY server/tsconfig.json ./server/
+COPY server/prisma ./server/prisma
+RUN cd server && npx prisma generate
+COPY server/src ./server/src
+RUN cd server && npx tsc
 
 FROM base AS runner
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/server/dist ./dist
 COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
-COPY prisma ./prisma
-COPY package.json ./
+COPY server/prisma ./prisma
+COPY server/package.json ./package.json
 
 ENV NODE_ENV=production
 EXPOSE 3001

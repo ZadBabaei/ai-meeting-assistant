@@ -1,0 +1,173 @@
+Advanced AI Meeting Transcript
+Date: March 18, 2026
+Meeting Type: Financial Advisory + Sales Pipeline Review
+
+Participants:
+- Emma Wilson (Client)
+- David Ross (Advisor)
+- Alex Kumar (CRM Manager)
+
+---
+
+[System Note]
+Transcript uploaded via Meeting Upload (drag-and-drop text file).
+AI Processing initiated.
+
+---
+
+David: Hi Emma, thanks for joining. Today we’ll review your financial plan and also update your profile based on the changes you mentioned.
+
+Emma: Thanks David. Yes, quite a few things have changed recently.
+
+Alex: I’ll monitor CRM updates and make sure everything is recorded correctly.
+
+---
+
+SECTION 1: CLIENT UPDATES (CRM AUTO-UPDATES)
+
+David: Let’s start with your retirement goal. Previously, you planned to retire at 65. Has that changed?
+
+Emma: Yes, I want to retire earlier — ideally at 60 now.
+
+David: Got it. And your target annual retirement income?
+
+Emma: Increase that to 95,000 dollars.
+
+Alex: Noted:
+- Retirement Age: 65 → 60
+- Retirement Income: 80,000 → 95,000
+
+David: How about your income? Any changes?
+
+Emma: Yes, I got promoted. My salary is now 135,000 instead of 110,000.
+
+Alex: Updating CRM:
+- Income: 110,000 → 135,000
+
+David: Risk tolerance — still moderate?
+
+Emma: Actually, I’m more conservative now.
+
+Alex: Updating:
+- Risk Profile: Moderate → Conservative
+
+---
+
+SECTION 2: ACTION ITEMS (AUTO-EXTRACTABLE)
+
+David: Based on this, here are the next steps:
+
+1. Update Emma’s retirement plan with new assumptions.
+2. Increase monthly contributions to 1,800 starting April 1.
+3. Send updated investment portfolio aligned with conservative risk.
+4. Schedule follow-up meeting in two weeks.
+
+Emma: That sounds good.
+
+Alex: Assigning tasks:
+- Task 1: Update retirement plan → Assigned to David → Due March 20
+- Task 2: Adjust contribution setup → Assigned to Alex → Due March 25
+- Task 3: Portfolio update → Assigned to David → Due March 22
+- Task 4: Schedule follow-up → Assigned to Admin → Due March 19
+
+---
+
+SECTION 3: CONTACT MANAGEMENT
+
+David: Emma, I also want to confirm your contact details.
+
+Emma: Sure, still the same email, but I changed my phone number.
+
+David: What’s the new one?
+
+Emma: 902-555-8123.
+
+Alex: Updating contact record:
+- Phone updated
+- Status: Active Client
+
+---
+
+SECTION 4: PIPELINE DISCUSSION (KANBAN)
+
+Alex: Quick pipeline update:
+Emma moved from “Onboarding” to “Active” stage today.
+
+David: Great. Also, we have two prospects:
+
+- John Lee → Prospect stage
+- Sarah Ahmed → Onboarding stage
+
+Alex: Noted for pipeline board:
+Prospect → John Lee
+Onboarding → Sarah Ahmed
+Active → Emma Wilson
+Inactive → None
+
+---
+
+SECTION 5: FOLLOW-UP EMAIL (AI GENERATED)
+
+David: Emma, we’ll send you a summary email after this meeting.
+
+Emma: Perfect.
+
+[AI GENERATED EMAIL]
+
+Subject: Summary of Your Updated Financial Plan
+
+Hi Emma,
+
+Thank you for meeting with us today.
+
+Here is a summary of the updates and next steps:
+
+- Retirement age updated to 60
+- Target retirement income increased to $95,000
+- Salary updated to $135,000
+- Risk profile adjusted to Conservative
+
+Next Steps:
+- We will update your retirement plan and portfolio
+- Contribution increase will begin April 1
+- Follow-up meeting will be scheduled shortly
+
+Please let us know if anything needs adjustment.
+
+Best regards,
+David Ross
+
+[Copy to Clipboard Enabled]
+
+---
+
+SECTION 6: SYSTEM OUTPUT SUMMARY (FOR AI PROCESSING)
+
+Extracted Data:
+
+CRM Updates:
+- Retirement Age: 60
+- Retirement Income: 95,000
+- Income: 135,000
+- Risk Profile: Conservative
+- Phone: 902-555-8123
+
+Action Items:
+1. Update retirement plan (David, March 20)
+2. Adjust contributions (Alex, March 25)
+3. Update portfolio (David, March 22)
+4. Schedule meeting (Admin, March 19)
+
+Pipeline Status:
+- Emma Wilson → Active
+- John Lee → Prospect
+- Sarah Ahmed → Onboarding
+
+Contact Status:
+- Emma Wilson → Active Client
+
+Follow-up Email: Generated
+
+---
+
+End of Transcript

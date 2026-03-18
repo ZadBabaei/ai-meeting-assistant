@@ -44,17 +44,38 @@ export async function processMeeting(meetingId: string): Promise<void> {
         });
       }
 
-      // Create CRM field changes — try to match contacts by name
+      // Upsert contacts from participants list and link to meeting
+      const upsertedContacts: { id: string; name: string }[] = [];
+      for (const participantName of result.participants) {
+        const existing = await tx.contact.findFirst({
+          where: { name: { equals: participantName, mode: 'insensitive' } },
+        });
+
+        const contact = existing ?? await tx.contact.create({
+          data: { name: participantName, status: 'PROSPECT' },
+        });
+
+        upsertedContacts.push({ id: contact.id, name: contact.name });
+
+        const alreadyLinked = meeting.contacts.some((mc) => mc.contactId === contact.id);
+        if (!alreadyLinked) {
+          await tx.meetingContact.create({
+            data: { meetingId, contactId: contact.id },
+          });
+        }
+      }
+
+      // Create CRM field changes — match against upserted contacts
       for (const change of result.crmChanges) {
-        const matchedContact = meeting.contacts.find(
-          (mc) => mc.contact.name.toLowerCase().includes(change.contactName.toLowerCase())
-            || change.contactName.toLowerCase().includes(mc.contact.name.toLowerCase())
+        const matchedContact = upsertedContacts.find(
+          (c) => c.name.toLowerCase().includes(change.contactName.toLowerCase())
+            || change.contactName.toLowerCase().includes(c.name.toLowerCase())
         );
 
         await tx.cRMFieldChange.create({
           data: {
             meetingId,
-            contactId: matchedContact?.contactId || null,
+            contactId: matchedContact?.id || null,
             fieldName: change.fieldName,
             oldValue: change.oldValue,
             newValue: change.newValue,

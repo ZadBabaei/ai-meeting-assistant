@@ -11,7 +11,9 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   server:
-    build: ./server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
     ports:
       - "3001:3001"
     environment:
@@ -23,7 +25,9 @@ services:
       - db
 
   client:
-    build: ./client
+    build:
+      context: .
+      dockerfile: client/Dockerfile
     ports:
       - "80:80"
     depends_on:

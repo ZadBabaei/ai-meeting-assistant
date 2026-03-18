@@ -62,9 +62,9 @@ contactRoutes.get('/:id', async (req, res) => {
 // Create a new contact
 contactRoutes.post('/', async (req, res) => {
   try {
-    const { name, email, company, role, phone, notes } = req.body;
+    const { name, email, company, role, phone, notes, status } = req.body;
     const contact = await prisma.contact.create({
-      data: { name, email, company, role, phone, notes },
+      data: { name, email, company, role, phone, notes, ...(status ? { status } : {}) },
     });
     res.status(201).json(contact);
   } catch (error) {

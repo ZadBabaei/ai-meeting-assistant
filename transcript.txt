@@ -1,0 +1,100 @@
+AI Meeting Transcript
+Date: March 18, 2026
+Meeting Type: Client Review Call
+Participants:
+- Sarah Mitchell (Financial Advisor)
+- John Carter (Client)
+- Emily Chen (Associate Advisor)
+
+Sarah: Hi John, thanks for joining. I wanted to use today’s meeting to review your retirement plan, your current savings rate, and a few updates to your account that we discussed by email last week.
+
+John: Sounds good. I’m glad we’re doing this because a few things have changed since our last conversation.
+
+Emily: Great. I’m taking notes, and at the end we’ll confirm any action items and next steps.
+
+Sarah: Perfect. John, last time we spoke, you were targeting retirement at age 65. Has that changed?
+
+John: Yes, actually. I’d like to move that up if possible. I’m now hoping to retire at 62 instead of 65.
+
+Sarah: Okay, that’s an important update. We’ll need to adjust the plan assumptions. Has your target annual retirement income changed as well?
+
+John: A little. Previously we talked about 75,000 dollars per year, but I think 82,000 is more realistic for what my wife and I want.
+
+Emily: Noted. Retirement target age updated from 65 to 62, and retirement income target updated from 75,000 to 82,000 annually.
+
+Sarah: Excellent. Let’s also talk about your monthly contributions. You were contributing 1,200 dollars per month across your retirement accounts. Are you still comfortable with that amount?
+
+John: I recently got a raise, so I can increase that. I’d like to move it to 1,500 dollars per month starting next month.
+
+Sarah: That’s great news. Increasing your contributions will help offset the earlier retirement date. Do you want us to set that change up automatically?
+
+John: Yes, please do.
+
+Emily: I’ll create that task after the call.
+
+Sarah: Another item from your email was your new home purchase. Congratulations, by the way. Since your mortgage payment is higher now, I just want to confirm your emergency fund level. Last time we had 20,000 dollars listed in liquid savings.
+
+John: Thank you. Right now the emergency fund is closer to 15,000 dollars because of closing costs and furniture purchases.
+
+Sarah: Understood. That changes your liquidity picture a bit. We may want to rebuild that over the next six to nine months. How are you feeling about risk these days? Previously you identified as moderate growth.
+
+John: I think I’m a little more cautious now. With the mortgage and kids’ expenses, I’d say I’m more moderate than aggressive, maybe even moderate-conservative.
+
+Sarah: That makes sense. I’d record that as a change in risk tolerance from moderate growth to moderate-conservative, subject to the official questionnaire.
+
+Emily: I’ll send John the updated risk questionnaire after the meeting.
+
+Sarah: Great. John, you also mentioned your salary changed. Do you want to confirm your current annual income?
+
+John: Yes. I was making 145,000, and now my base salary is 158,000. My bonus target stayed the same.
+
+Sarah: Excellent, thank you. That’s another useful update for the CRM.
+
+Emily: Income updated from 145,000 to 158,000 annual base salary.
+
+Sarah: Let’s talk about education savings for your daughter. Last year you mentioned possibly starting RESP contributions but hadn’t done it yet. Any update there?
+
+John: Yes, we opened the RESP in January, but we haven’t automated the contributions yet. I’d like to start with 250 dollars per month.
+
+Sarah: Good step. Emily, let’s create a follow-up for that too. We should send him the paperwork options and recommendation.
+
+Emily: Added.
+
+Sarah: One more question. Are you still planning to keep the cottage purchase as a five-year goal?
+
+John: Probably not. I think we should move that farther out, maybe eight years, until the mortgage settles down.
+
+Sarah: Okay, so secondary property goal moves from five years to eight years. That reduces some short-term pressure.
+
+John: Exactly.
+
+Sarah: Based on everything we’ve discussed, here’s what I think we should do next. First, we’ll update your retirement plan with retirement at age 62, income target at 82,000, and monthly contributions at 1,500. Second, we’ll send you a new risk tolerance questionnaire. Third, we’ll prepare recommendations for rebuilding your emergency fund and starting RESP contributions.
+
+John: That sounds right.
+
+Emily: I also have an action item to update the CRM with the salary, emergency fund balance, risk profile note, and the adjusted timeline for the cottage goal.
+
+Sarah: Yes, and let’s make sure John receives a follow-up email by tomorrow summarizing these decisions.
+
+John: Appreciate it.
+
+Sarah: Any other concerns before we wrap up?
+
+John: Just one. I want to make sure the increased monthly contribution starts in April, not immediately this week.
+
+Emily: Got it. Effective date for retirement contribution increase is April 1, 2026.
+
+Sarah: Perfect. We’ll take care of it. Thanks again, John.
+
+John: Thank you both.
+
+Emily: Thanks, everyone. Meeting adjourned.
+
+Confirmed Action Items:
+1. Update retirement plan assumptions to retirement age 62 and annual retirement income 82,000.
+2. Increase John’s monthly retirement contribution from 1,200 to 1,500 effective April 1, 2026.
+3. Send updated risk tolerance questionnaire to John.
+4. Update CRM fields for salary, emergency fund balance, risk tolerance note, and secondary property goal timeline.
+5. Prepare recommendation for emergency fund rebuild over 6 to 9 months.
+6. Send RESP setup and contribution recommendation for 250 per month.
+7. Draft and send follow-up email to John by March 19, 2026.

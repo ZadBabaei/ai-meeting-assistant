@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(docker compose:*)",
+      "Bash(curl -s http://localhost:3001/api/health)",
+      "Bash(curl -s http://localhost/)",
+      "Bash(curl -s http://localhost:3001/api/contacts)",
+      "Bash(curl -s http://localhost:3001/api/meetings)",
+      "Bash(DATABASE_URL=\"postgresql://postgres:password@localhost:5432/meeting_assistant\" npx prisma db push)",
+      "Bash(python -m json.tool)",
+      "Bash(curl -s -X POST http://localhost:3001/api/meetings -H 'Content-Type: application/json' -d '{\"\"\"\"title\"\"\"\":\"\"\"\"Q1 Sales Review\"\"\"\",\"\"\"\"transcript\"\"\"\":\"\"\"\"John Smith from Acme Corp joined the call. We discussed their retirement planning goals. John mentioned he wants to retire at age 62. Action item: Send John the retirement projection spreadsheet by Friday. Decision: Move John to active client status.\"\"\"\"}')",
+      "Bash(MEETING_ID=\"cmmw25s9r0004lq011lt8wd8v\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/meetings/$MEETING_ID/process)",
+      "Bash(curl -s -X POST \"http://localhost:3001/api/meetings/cmmw25s9r0004lq011lt8wd8v/process\")",
+      "Bash(curl -s \"http://localhost:3001/api/meetings/cmmw25s9r0004lq011lt8wd8v\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/meetings -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Q1 Sales Review\"\",\"\"transcript\"\":\"\"John Smith from Acme Corp joined the call. We discussed their retirement planning goals. John mentioned he wants to retire at age 62. Action item: Send John the retirement projection spreadsheet by Friday. Decision: Move John to active client status.\"\"}')",
+      "Bash(curl -s -X POST \"http://localhost:3001/api/meetings/cmmw2cy5y0000o301i1uy7577/process\")",
+      "Bash(curl -s \"http://localhost:3001/api/meetings/cmmw2cy5y0000o301i1uy7577\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/contacts -H \"Content-Type: application/json\" -d '{\"\"name\"\":\"\"John Smith\"\",\"\"email\"\":\"\"john@acmecorp.com\"\",\"\"company\"\":\"\"Acme Corp\"\",\"\"status\"\":\"\"PROSPECT\"\"}')"
+    ]
+  }
+}
