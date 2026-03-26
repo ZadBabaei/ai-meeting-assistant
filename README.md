@@ -115,4 +115,6 @@ ai-meeting-assistant/
 │   ├── prisma/                # Database schema
 │   └── Dockerfile
 └── docker-compose.yml
+
+- <!-- add-to-portfolio -->
 ```
