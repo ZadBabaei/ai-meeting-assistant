@@ -7,7 +7,7 @@ AI-powered meeting assistant that analyzes transcripts, extracts action items, d
 ```
 ┌─────────────┐     ┌──────────────────┐     ┌─────────────────────┐
 │  React/TS   │────>│  Node.js API     │────>│  LLM Agent Layer    │
-│  Frontend   │<────│  (Express)       │<────│  (OpenAI GPT-5.4)    │
+│  Frontend   │<────│  (Express)       │<────│  (OpenAI GPT-5.4)   │
 └─────────────┘     └──────────────────┘     └─────────────────────┘
                            │                          │
                     ┌──────┴──────┐           ┌───────┴───────┐
