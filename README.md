@@ -16,7 +16,7 @@ AI-powered meeting assistant that analyzes transcripts, extracts action items, d
                     └─────────────┘           └───────────────┘
 ```
 
-**Agent Pipeline:** Transcript → GPT-4o (function calling) → Structured extraction of action items, CRM changes, summary, and follow-up email → PostgreSQL storage
+**Agent Pipeline:** Transcript → GPT-5.4 (function calling) → Structured extraction of action items, CRM changes, summary, and follow-up email → PostgreSQL storage
 
 ## Tech Stack
 
@@ -25,7 +25,7 @@ AI-powered meeting assistant that analyzes transcripts, extracts action items, d
 | Frontend | React 18 + TypeScript + Vite + Tailwind CSS |
 | Backend | Node.js + Express + TypeScript |
 | Database | PostgreSQL + Prisma ORM |
-| AI | OpenAI GPT-4o with function calling |
+| AI | OpenAI GPT-5.4 with function calling |
 | Infra | Docker Compose |
 
 ## Features
