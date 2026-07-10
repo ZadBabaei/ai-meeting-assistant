@@ -32,7 +32,7 @@ jobs:
           args: >-
             --no-progress
             --exclude localhost
-            './**/*.md'
+            './README.md'
 
   secrets:
     runs-on: ubuntu-latest
