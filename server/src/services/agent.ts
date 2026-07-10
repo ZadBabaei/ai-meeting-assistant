@@ -130,7 +130,7 @@ async function withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
 export async function processTranscript(transcript: string): Promise<AgentResult> {
   const response = await withRetry(() =>
     openai.chat.completions.create({
-      model: 'gpt-4o',
+      model: process.env.OPENAI_CHAT_MODEL || 'gpt-4o',
       messages: [
         { role: 'system', content: EXTRACTION_SYSTEM_PROMPT },
         { role: 'user', content: `Please analyze the following meeting transcript and extract all relevant data:\n\n${transcript}` },

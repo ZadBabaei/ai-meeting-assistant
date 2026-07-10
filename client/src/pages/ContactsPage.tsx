@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, type Contact } from '../lib/api';
 
@@ -17,21 +17,17 @@ export function ContactsPage() {
   const [showNew, setShowNew] = useState(false);
   const [newContact, setNewContact] = useState<{ name: string; email: string; company: string; role: string; status: 'PROSPECT' | 'ONBOARDING' | 'ACTIVE' | 'INACTIVE' }>({ name: '', email: '', company: '', role: '', status: 'PROSPECT' });
 
-  const fetchContacts = () => {
+  const fetchContacts = useCallback(() => {
     setLoading(true);
     api.getContacts({ search: search || undefined, status: statusFilter || undefined })
       .then(setContacts)
       .finally(() => setLoading(false));
-  };
+  }, [search, statusFilter]);
 
   useEffect(() => {
-    fetchContacts();
-  }, [statusFilter]);
-
-  useEffect(() => {
-    const timeout = setTimeout(fetchContacts, 300);
+    const timeout = setTimeout(fetchContacts, search ? 300 : 0);
     return () => clearTimeout(timeout);
-  }, [search]);
+  }, [fetchContacts, search]);
 
   const handleCreateContact = async (e: React.FormEvent) => {
     e.preventDefault();

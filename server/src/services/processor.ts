@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma.js';
+import type { Prisma } from '@prisma/client';
 import { processTranscript, type AgentResult } from './agent.js';
 
 export async function processMeeting(meetingId: string): Promise<void> {
@@ -22,7 +23,7 @@ export async function processMeeting(meetingId: string): Promise<void> {
     const result = await processTranscript(meeting.transcript);
 
     // Store results in a transaction
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Update meeting summary
       await tx.meeting.update({
         where: { id: meetingId },
@@ -57,7 +58,7 @@ export async function processMeeting(meetingId: string): Promise<void> {
 
         upsertedContacts.push({ id: contact.id, name: contact.name });
 
-        const alreadyLinked = meeting.contacts.some((mc) => mc.contactId === contact.id);
+        const alreadyLinked = meeting.contacts.some((mc: { contactId: string }) => mc.contactId === contact.id);
         if (!alreadyLinked) {
           await tx.meetingContact.create({
             data: { meetingId, contactId: contact.id },
