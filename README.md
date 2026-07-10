@@ -1,120 +1,194 @@
 # AI Meeting Assistant
 
-AI-powered meeting assistant that analyzes transcripts, extracts action items, detects CRM field changes, and drafts follow-up emails automatically.
+AI Meeting Assistant turns meeting transcripts or audio recordings into structured, reviewable CRM work: summaries, action items, field-change suggestions, contact updates, and follow-up email drafts.
+
+> No public deployment is currently linked. The application is designed to run locally with Docker Compose or separate Node.js development processes.
+
+## Product workflow
+
+1. Paste a transcript, upload a text file, or upload a supported audio file.
+2. Audio is transcribed with the configured OpenAI transcription model.
+3. The transcript is sent to an OpenAI chat model with a required function-calling schema.
+4. The server stores the summary, participants, action items, proposed CRM changes, and email draft in PostgreSQL.
+5. Users review the results through meeting, contact, and pipeline views.
 
 ## Architecture
 
-```
-┌─────────────┐     ┌──────────────────┐     ┌─────────────────────┐
-│  React/TS   │────>│  Node.js API     │────>│  LLM Agent Layer    │
-│  Frontend   │<────│  (Express)       │<────│  (OpenAI GPT-5.4)   │
-└─────────────┘     └──────────────────┘     └─────────────────────┘
-                           │                          │
-                    ┌──────┴──────┐           ┌───────┴───────┐
-                    │  PostgreSQL │           │  Function     │
-                    │  (Prisma)   │           │  Calling      │
-                    └─────────────┘           └───────────────┘
+```mermaid
+flowchart LR
+    UI["React + TypeScript client"] --> API["Express API"]
+    API --> INPUT{"Input type"}
+    INPUT -->|Transcript or text file| AGENT["Structured LLM analysis"]
+    INPUT -->|Audio file| TRANSCRIBE["OpenAI transcription"]
+    TRANSCRIBE --> AGENT
+    AGENT --> STORE["Prisma + PostgreSQL"]
+    STORE --> UI
 ```
 
-**Agent Pipeline:** Transcript → GPT-5.4 (function calling) → Structured extraction of action items, CRM changes, summary, and follow-up email → PostgreSQL storage
+## Key features
 
-## Tech Stack
+- Transcript entry and drag-and-drop text-file input
+- Audio upload and Whisper transcription for MP3, MP4, MPEG, MPGA, M4A, WAV, and WebM files
+- Structured meeting summaries produced through LLM function calling
+- Action-item extraction with optional assignees and due dates
+- CRM field-change detection with approve/dismiss review states
+- Follow-up email drafting
+- Contact management with search and status filters
+- Pipeline Kanban board for prospect, onboarding, active, and inactive contacts
+- Docker Compose environment for the client, API, and PostgreSQL
+
+## Processing pipeline
+
+The agent requires a `save_meeting_analysis` tool call. Its schema defines the expected summary, participants, action items, CRM changes, and optional follow-up email. The API parses that structured result and writes related records in a Prisma transaction.
+
+Representative output shape:
+
+```json
+{
+  "summary": "The advisor and client reviewed an updated retirement plan.",
+  "participants": ["Advisor", "Client"],
+  "actionItems": [
+    {
+      "description": "Send updated retirement projections",
+      "assignee": "Advisor",
+      "dueDate": null
+    }
+  ],
+  "crmChanges": [
+    {
+      "contactName": "Client",
+      "fieldName": "Risk Tolerance",
+      "oldValue": "Aggressive",
+      "newValue": "Moderate Growth"
+    }
+  ],
+  "followUpEmail": {
+    "subject": "Follow-up: retirement plan updates",
+    "body": "Thank you for meeting today...",
+    "to": ["Client"]
+  }
+}
+```
+
+This example documents the schema; generated content depends on the supplied meeting and configured model.
+
+## Technology stack
 
 | Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + TypeScript + Vite + Tailwind CSS |
-| Backend | Node.js + Express + TypeScript |
-| Database | PostgreSQL + Prisma ORM |
-| AI | OpenAI GPT-5.4 with function calling |
-| Infra | Docker Compose |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS |
+| API | Node.js, Express, TypeScript |
+| Data | PostgreSQL, Prisma ORM |
+| AI | OpenAI chat function calling and audio transcription |
+| Testing | Vitest |
+| Infrastructure | Docker, Docker Compose, Nginx |
 
-## Features
-
-- **Meeting Upload** — Paste transcripts or drag-and-drop text files
-- **AI Processing** — One-click analysis extracts structured data from conversations
-- **Action Items** — Auto-extracted tasks with assignees and due dates
-- **CRM Auto-Updates** — Detects client data changes (retirement targets, risk tolerance, income)
-- **Follow-up Emails** — AI-drafted professional emails with copy-to-clipboard
-- **Contact Management** — Searchable contact list with status filtering
-- **Pipeline Kanban** — Drag-and-drop board (Prospect → Onboarding → Active → Inactive)
-
-## Getting Started
+## Local setup
 
 ### Prerequisites
 
-- Node.js 22+
-- PostgreSQL 16+
+- Node.js 22 or newer
+- PostgreSQL 16 or Docker Desktop
 - OpenAI API key
 
-### Local Development
-
 ```bash
-# Clone and install
 git clone https://github.com/ZadBabaei/ai-meeting-assistant.git
 cd ai-meeting-assistant
-npm install
-
-# Set up environment
+npm ci
 cp .env.example server/.env
-# Edit server/.env with your DATABASE_URL and OPENAI_API_KEY
-
-# Set up database
-cd server
-npx prisma migrate dev --name init
-cd ..
-
-# Run both client and server
-npm run dev:server  # Terminal 1
-npm run dev:client  # Terminal 2
 ```
 
-### Docker
+Update `server/.env`, then prepare the database and start the two development processes:
 
 ```bash
-# Set your OpenAI key
-export OPENAI_API_KEY=sk-your-key
+cd server
+npx prisma migrate dev
+cd ..
+npm run dev:server
+```
 
-# Start everything
+In another terminal:
+
+```bash
+npm run dev:client
+```
+
+The client runs at `http://localhost:5173` and the API at `http://localhost:3001` during Vite development.
+
+### Docker Compose
+
+```bash
+cp .env.example .env
+# Set OPENAI_API_KEY in .env
 docker compose up --build
 ```
 
-The app will be available at `http://localhost` (client) and `http://localhost:3001` (API).
+The Docker client is served at `http://localhost`, and the API is exposed on port `3001`.
 
-## API Endpoints
+## Environment variables
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/meetings` | List all meetings |
-| POST | `/api/meetings` | Create a meeting |
-| GET | `/api/meetings/:id` | Meeting detail with extracted data |
-| POST | `/api/meetings/:id/process` | Trigger AI analysis |
-| DELETE | `/api/meetings/:id` | Delete a meeting |
-| GET | `/api/contacts` | List contacts (supports `?search=` and `?status=`) |
-| POST | `/api/contacts` | Create a contact |
-| GET | `/api/contacts/:id` | Contact detail with meeting history |
-| PATCH | `/api/contacts/:id` | Update a contact |
-| DELETE | `/api/contacts/:id` | Delete a contact |
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `DATABASE_URL` | Yes | PostgreSQL connection string |
+| `OPENAI_API_KEY` | Yes | OpenAI API authentication |
+| `OPENAI_CHAT_MODEL` | No | Chat model used for structured analysis; defaults to `gpt-4o` |
+| `OPENAI_TRANSCRIPTION_MODEL` | No | Audio transcription model; defaults to `whisper-1` |
+| `PORT` | No | API port; defaults to `3001` |
+| `NODE_ENV` | No | Runtime environment |
+| `VITE_API_URL` | Client build | Browser API base URL |
 
-## Project Structure
+Never commit populated `.env` files.
 
+## API overview
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/meetings` | List meetings |
+| `POST` | `/api/meetings` | Create a transcript-based meeting |
+| `POST` | `/api/meetings/upload` | Upload an audio recording for transcription |
+| `GET` | `/api/meetings/:id` | Load a meeting and its extracted records |
+| `POST` | `/api/meetings/:id/process` | Start structured transcript analysis |
+| `DELETE` | `/api/meetings/:id` | Delete a meeting |
+| `GET` | `/api/contacts` | Search and filter contacts |
+| `POST` | `/api/contacts` | Create a contact |
+| `PATCH` | `/api/contacts/:id` | Update a contact |
+
+## Testing and verification
+
+```bash
+npm run lint
+npm test
+npm run build
+docker compose config
 ```
-ai-meeting-assistant/
-├── client/                    # React frontend
-│   ├── src/
-│   │   ├── components/        # Layout, shared components
-│   │   ├── pages/             # Route pages
-│   │   ├── lib/               # API client, types
-│   │   └── main.tsx
-│   └── Dockerfile
-├── server/                    # Express backend
-│   ├── src/
-│   │   ├── routes/            # API route handlers
-│   │   ├── services/          # Agent pipeline, processor
-│   │   ├── lib/               # Prisma client
-│   │   └── index.ts
-│   ├── prisma/                # Database schema
-│   └── Dockerfile
-└── docker-compose.yml
 
-- <!-- add-to-portfolio -->
-```
+The current Vitest suite mocks the OpenAI client and verifies structured extraction, CRM field changes, invalid tool responses, and follow-up email output.
+
+## Privacy and data handling
+
+- Meeting transcripts and extracted CRM records are stored in PostgreSQL.
+- Audio is uploaded to temporary server storage and deleted after successful transcription.
+- Transcript or audio content is sent to the configured OpenAI API.
+- The repository contains example transcripts; do not replace them with real client information.
+- Production deployments should add authentication, authorization, retention rules, encryption, audit logging, and explicit user consent before processing sensitive meetings.
+
+## Known limitations
+
+- Authentication and role-based access control are not implemented.
+- Background transcription and analysis use in-process asynchronous work rather than a durable queue.
+- Failed transcription can leave a temporary upload that requires cleanup.
+- Structured tool arguments are parsed but are not yet validated with a runtime schema.
+- The test suite does not currently cover database routes, uploads, or end-to-end browser flows.
+- No public demo or product screenshot is currently committed.
+
+## License
+
+This project is available under the [MIT License](LICENSE).
+
+<!-- add-to-portfolio
+title: "AI Meeting Assistant"
+description: "Meeting workflow application that turns transcripts and audio into structured CRM actions and follow-up drafts."
+tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "OpenAI", "Docker"]
+live: ""
+image: ""
+-->
